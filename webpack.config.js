@@ -1,5 +1,7 @@
 const path = require('path');
 var HtmlwebpackPlugin = require('html-webpack-plugin');
+var UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
+var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 
 module.exports = {
     entry: [
