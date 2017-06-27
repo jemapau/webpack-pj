@@ -1,7 +1,7 @@
 {
   "name": "webpack-pj",
   "version": "1.0.0",
-  "description": "This is a learning project using webpack",
+  "description": "This is a learning project using webpack.",
   "main": "index.js",
   "scripts": {
     "prebuild": "del-cli dist -f",
