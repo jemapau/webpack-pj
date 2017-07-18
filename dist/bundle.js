@@ -3510,13 +3510,13 @@ function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj);
 module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data,blockParams) {
     return "    <li>"
     + container.escapeExpression(container.lambda(blockParams[0][0], depth0))
-    + "</li>\n";
+    + "</li>\r\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams) {
     var stack1;
 
-  return "<ul>\n"
+  return "<ul>\r\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.numbers : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 2, blockParams),"inverse":container.noop,"data":data,"blockParams":blockParams})) != null ? stack1 : "")
-    + "</ul>\n";
+    + "</ul>\r\n";
 },"useData":true,"useBlockParams":true});
 
 /***/ }),
