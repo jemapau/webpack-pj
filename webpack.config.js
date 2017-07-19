@@ -4,10 +4,6 @@ var HtmlwebpackPlugin = require('html-webpack-plugin');
 var UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 
-const extractSass = new ExtractTextPlugin({
-    filename: "[name].[contenthash].css",
-});
-
 module.exports = {
     entry: [
       'babel-polyfill',
@@ -28,22 +24,20 @@ module.exports = {
           loader: "raw-loader"
         },
         {
-            test: /\.scss$/,
-            use: [{
-                loader: "style-loader" // creates style nodes from JS strings
-            }, {
-                loader: "css-loader" // translates CSS into CommonJS
-            }, {
-                loader: "sass-loader" // compiles Sass to CSS
-            }]
+          test: /\.scss$/,
+          use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            //resolve-url-loader may be chained before sass-loader if necessary
+            use: ['css-loader', 'sass-loader']
+          })
         }
       ],
     },
     plugins: [
+      new ExtractTextPlugin('main.css'),
       new HtmlwebpackPlugin({
         title: 'Intro to Webpack',
         template: './src/index.html'
       }),
-      extractSass
     ]
 };
