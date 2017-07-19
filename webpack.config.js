@@ -15,17 +15,29 @@ module.exports = {
     },
     module: {
       rules: [
-          { test: /\.jsx?$/, loader:'babel-loader', exclude: /node_modules/,
+        { test: /\.jsx?$/, loader:'babel-loader', exclude: /node_modules/,
             options: { plugins: ['transform-runtime'], presets: ['es2015']}
-          },
-          {test: /\.hbs$/, loader: 'handlebars-loader'},
-          { test:/\.scss$/, loader: 'style-loader!css-loader!sass-loader'}
-      ]
+        },
+        {test: /\.hbs$/, loader: 'handlebars-loader'},
+        {
+          test: /\.html$/,
+          loader: "raw-loader"
+        },
+        {
+          test: /\.scss$/,
+          use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            //resolve-url-loader may be chained before sass-loader if necessary
+            use: ['css-loader', 'sass-loader']
+          })
+        }
+      ],
     },
     plugins: [
+      new ExtractTextPlugin('main.css'),
       new HtmlwebpackPlugin({
         title: 'Intro to Webpack',
-        template: 'src/index.html'
+        template: './src/index.html'
       }),
     ]
 };
