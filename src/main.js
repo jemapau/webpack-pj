@@ -1,4 +1,6 @@
-const css = require('./css/main.scss')
+require('./index.html');
+import css from './css/main.scss';
+
 import { map } from 'lodash';
 import template from './numberlist.hbs';
 
