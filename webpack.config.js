@@ -1,6 +1,6 @@
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-var HtmlwebpackPlugin = require('html-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 
@@ -34,10 +34,10 @@ module.exports = {
       ],
     },
     plugins: [
-      new ExtractTextPlugin('main.css'),
-      new HtmlwebpackPlugin({
+      new HtmlWebpackPlugin({
         title: 'Intro to Webpack',
-        template: './src/index.html'
+        template: './src/index.html',
       }),
+      new ExtractTextPlugin('main.css'),
     ]
 };
