@@ -18,7 +18,6 @@ module.exports = {
         { test: /\.jsx?$/, loader:'babel-loader', exclude: /node_modules/,
             options: { plugins: ['transform-runtime'], presets: ['es2015']}
         },
-        {test: /\.hbs$/, loader: 'handlebars-loader'},
         {
           test: /\.html$/,
           loader: "raw-loader"
@@ -28,7 +27,11 @@ module.exports = {
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
             //resolve-url-loader may be chained before sass-loader if necessary
-            use: ['css-loader', 'sass-loader']
+            use: [
+              { loader: "css-loader" },
+              'postcss-loader',
+              { loader: "sass-loader" }
+            ]
           })
         }
       ],
@@ -36,8 +39,18 @@ module.exports = {
     plugins: [
       new HtmlWebpackPlugin({
         title: 'Intro to Webpack',
-        template: './src/index.html',
+        template: 'src/index.html',
       }),
       new ExtractTextPlugin('main.css'),
+      new UglifyJsPlugin({
+          beautify: false,
+          mangle: { screw_ie8 : true },
+          compress: { screw_ie8: true, warnings: false },
+          comments: false
+      }),
+      new CommonsChunkPlugin({
+          name: "vendor",
+          filename: "vendor.bundle.js"
+      })
     ]
 };
